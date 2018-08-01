@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 
 #define MAXSIZE 20
 #define TRUE 1
@@ -118,7 +119,21 @@ int DelLinkElem(LinkList * L,int i,ElemType *e){
 }
 
 
-
+//头插法
+void createListHead(LinkList * L,int n){
+     //头插法，产生的所有新节点插入头节点之后，长度位n
+     LinkList p;
+     int i;
+     srand(time(0)); //随机数种子
+     *L=(LinkList)malloc(sizeof(Node));  //先建立带有头节点的单链表
+    (*L)->next=NULL;
+    for(i=0;i<n;i++){
+        p=(LinkList)malloc(sizeof(Node));
+        p->data=rand()%100+1;
+        p->next=(*L)->next;
+        (*L)->next=p;
+    }
+ }
 
 int main() {
 
