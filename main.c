@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <stdlib.h>
+
 #define MAXSIZE 20
 #define TRUE 1
 #define OK 1
@@ -59,6 +61,7 @@ typedef struct Node{
 } Node;
 typedef struct Node  * LinkList; //定义linkedList
 
+
  int GetLinkElem(LinkList L,int i,ElemType *e){
      int j=1;
      LinkList p;
@@ -76,6 +79,43 @@ typedef struct Node  * LinkList; //定义linkedList
  }
 
 
+ int InsertLinkElem(LinkList * L,int i,ElemType e){
+     int j=1;
+     LinkList p,s;
+     p=*L;
+     while (p||j<i){
+         p=p->next;
+         j++;
+     }
+     if(!p||j>i){
+         return ERROR;//第i个元素不存在
+     }
+     s =(LinkList)malloc(sizeof(Node)); //新节点
+     s->data=e;
+     s->next=p->next;
+     p->next=s;
+     return OK;
+
+ }
+
+int DelLinkElem(LinkList * L,int i,ElemType *e){
+    int j=1;
+    LinkList p,q;
+    p=*L;
+    while (p->next&&j<i){
+        //插入操作的判断条件是p!=null,p.next 可以查找到替换节点的前一个节点
+        p=p->next;
+        ++j;
+    }
+    if(!p->next||j>i)
+        return ERROR;
+    q=p->next;
+    p->next=q->next;
+    e=q->data;
+    free(q);
+    return  OK;
+
+}
 
 
 
