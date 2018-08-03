@@ -135,6 +135,27 @@ void createListHead(LinkList * L,int n){
     }
  }
 
+
+//尾插法
+void createListTail(LinkList*L,int n){
+     LinkList p,r;
+    int i;
+    srand(time(0)); //随机数种子
+    *L=(LinkList)malloc(sizeof(Node));//初始化第一个节点
+    r=*L;
+    for(i=0;i<n;i++){
+      p=(LinkList *)malloc(sizeof(Node));
+      p->data=rand()%100+1;
+      r->next=p;
+      r=p;
+    }
+    r->next=NULL;
+ }
+
+
+
+
+
 int main() {
 
     return 0;
