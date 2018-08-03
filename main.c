@@ -184,7 +184,7 @@ void createListTail(LinkList*L,int n){
 
  typedef struct StackNode{
      int data;
-     struct StackNode *Next;
+     struct StackNode * next;
  }StackNode ,*LinkStackPrt;
 
  typedef struct LinkStack{
@@ -192,7 +192,14 @@ void createListTail(LinkList*L,int n){
      int count;
  }LinkStack;
 
-
+int push(LinkStack *L, int ele){
+    LinkStackPrt s=malloc(sizeof(StackNode));
+    s->data=ele;//新节点负值
+    s->next=L->top; //将原来的头节点赋值给新节点的next节点
+    L->top=s;//指针上移一位
+    L->count++; //数量加一
+    return OK;
+}
 
 
 
