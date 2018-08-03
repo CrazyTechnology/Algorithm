@@ -153,6 +153,48 @@ void createListTail(LinkList*L,int n){
  }
 
 
+ //线性栈
+ typedef struct {
+     int data [MAXSIZE];
+     int top; //指针
+ }Stack;
+
+ //入栈操作
+
+ int insertStack(Stack * stack,int ele){
+     if(stack->top>MAXSIZE-1)
+         return ERROR;
+     stack->top++;
+     stack->data[stack->top]=ele;
+     return OK;
+
+ }
+
+ //出栈操作
+ int popStack(Stack *s,int * ele){
+     if(s->top==-1)
+         return ERROR;
+    ele= s->data[s->top];
+    s->top--;
+     return ele;
+ }
+
+
+ //链表栈
+
+ typedef struct StackNode{
+     int data;
+     struct StackNode *Next;
+ }StackNode ,*LinkStackPrt;
+
+ typedef struct LinkStack{
+     LinkStackPrt  top;
+     int count;
+ }LinkStack;
+
+
+
+
 
 
 
