@@ -201,6 +201,16 @@ int push(LinkStack *L, int ele){
     return OK;
 }
 
+int pop(LinkStack *L, int * ele){
+    LinkStackPrt p;
+    ele= L->top->data; //获取第一个栈顶元素的值
+    p=L->top; //把栈顶元素赋值给p
+    L->top=L->top->next; //top指针下移一位
+    free(p);    //释放栈顶节点
+    L->count--; //长度-1
+    return ele;
+}
+
 
 
 
