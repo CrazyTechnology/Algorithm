@@ -202,7 +202,7 @@ int push(LinkStack *L, int ele){
 }
 
 int pop(LinkStack *L, int * ele){
-    LinkStackPrt p;
+    LinkStackPrt p; //定义一个p节点
     ele= L->top->data; //获取第一个栈顶元素的值
     p=L->top; //把栈顶元素赋值给p
     L->top=L->top->next; //top指针下移一位
@@ -211,9 +211,29 @@ int pop(LinkStack *L, int * ele){
     return ele;
 }
 
+//二叉树节点定义，有左右孩子指针，有data数据
+typedef  struct BiTNode{
+    int data;
+    struct  BinTNode *lchild,* rchild; //左右孩子指针
+}BiTNode,*BiTree;
 
+//前序遍历
+void PreOrderTraers(BiTree T){
+    if(T==NULL)
+        return ;
+    printf("%c",T->data);
+    PreOrderTraers(T->lchild); //先遍历左子树
+    PreOrderTraers(T->rchild);//在遍历右子树
+}
 
-
+//前序遍历
+void InOrderTraers(BiTree T){
+    if(T==NULL)
+        return ;
+    InOrderTraers(T->lchild); //先遍历左子树
+    printf("%c",T->data); //显示节点数据，可以改为对其他节点对操作
+    InOrderTraers(T->rchild);//在遍历右子树
+}
 
 int main() {
 
