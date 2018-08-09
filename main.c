@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/time.h>
+#include <math.h>
 
 #define MAXSIZE 20
 #define TRUE 1
@@ -234,6 +235,43 @@ void InOrderTraers(BiTree T){
     printf("%c",T->data); //显示节点数据，可以改为对其他节点对操作
     InOrderTraers(T->rchild);//在遍历右子树
 }
+
+//后续遍历，先遍历左节点。然后右节点。最后根节点
+void PostOrderTraers(BiTree T){
+    if(T==NULL)
+        return ;
+    PostOrderTraers(T->lchild); //先遍历左子树
+    PostOrderTraers(T->rchild);//在遍历右子树
+    printf("%c",T->data); //显示节点数据，可以改为对其他节点对操作
+}
+
+
+//建立树结构，也是利用了递归的原理
+void createBiTree(BiTree *T){
+    int ch;
+    scanf("%c",&ch);
+    if(ch=='#')
+        *T=NULL;
+    else{
+        *T=(BiTree)malloc(sizeof(BiTNode));
+        if(!*T)
+            exit(OVERFLOW);
+        (*T)->data=ch;
+        createBiTree(&(*T)->lchild);
+        createBiTree(&(*T)->rchild);
+    }
+}
+
+
+
+//线索二叉树
+typedef enum {Link,Thread} PointerTag; //link=0表示指向左右孩子指针
+typedef struct BiThrNode{
+    int data;
+    struct BiThrNode *lchild,*rchild;
+    PointerTag LTag;
+    PointerTag RTag;
+}BiThrNode,*BiThrTree;
 
 int main() {
 
